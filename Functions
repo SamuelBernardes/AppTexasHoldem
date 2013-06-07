@@ -1,0 +1,811 @@
+package com.br.util;
+
+import com.br.bean.Card;
+import com.br.bean.Player;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+
+/**
+ * @author SAMUEL
+ */
+public class Functions {
+
+    public String[] fileChooser() {
+
+        String[] array = new String[2];
+        JFileChooser arquivo = new JFileChooser();
+
+        //Seta diretÃ³rio inicial
+        String local = System.getProperty("user.dir");
+        File fl = new File(local);
+        arquivo.setCurrentDirectory(fl);
+
+        arquivo.setFileFilter(new javax.swing.filechooser.FileFilter() { //Filtro, converte as letras em minÃºsculas antes de comparar
+
+            public boolean accept(File f) {
+                //Retorna os arquivos .txt
+                return f.getName().toLowerCase().endsWith("txt")
+                        || f.isDirectory();
+            }
+
+            //Texto que serÃ¡ exibido para o usuÃ¡rio
+            public String getDescription() {
+                String s = "*txt";
+                return s;
+            }
+        });
+
+        int retorno = 0;
+        arquivo.setDialogTitle("Abrir arquivo...");
+        retorno = arquivo.showOpenDialog(null);
+
+        if (retorno == JFileChooser.APPROVE_OPTION) {
+            array[0] = arquivo.getSelectedFile().getAbsolutePath();
+            array[1] = arquivo.getSelectedFile().getName();
+        }
+        return array;
+    }
+
+    public String[] loadTxt() throws FileNotFoundException,
+            IOException {
+
+        String[] array = fileChooser();
+
+
+        String[] texto = new String[13];    //AtÃ© 12 jogadores na mesa, entÃ£o usa-se no mÃ¡ximo 12 linhas + 1 PARA FOLGA
+
+
+        File arq = new File(array[0]);  //Seta arq com o .txt - array[0] Ã© o endereÃ§o do arquivo.
+
+        int i = 0;
+        if (arq.exists()) {
+
+            FileReader arquivo = new FileReader(arq);
+            BufferedReader ler = new BufferedReader(arquivo);
+
+            //O mÃ©todo readline retorna null ao chegar no fim da linha
+            boolean fim = false;
+            while (!fim) {
+                String linha = ler.readLine();
+                texto[i] = linha;
+                if (texto[i] == null) {
+                    fim = true;
+                }
+                i++;
+            }
+
+            ler.close();
+            arquivo.close();
+
+        }
+
+        for (int j = 0; j < texto.length; j++) {
+            if (texto[j] == null) {
+                texto[j] = "";
+            }
+        }
+
+        return texto;
+    }
+
+    public Player setPlayer(String line, Player player) {
+
+        player = new Player();
+        String[] string_cards = new String[7];
+
+        line = line.toUpperCase();
+        string_cards = line.split(" ");
+
+        Card[] cards = new Card[string_cards.length];
+
+        for (int i = 0; i < string_cards.length; i++) { //Seta o array de Strings com os valores maiÃºsculo das cartas
+            Card c = new Card();
+            if (isPokerCard(string_cards[i])) {
+                if (!(string_cards[i] == null)) {
+                    c.setFace(faceToInt(string_cards[i].substring(0, 1)));
+                    c.setSuit(string_cards[i].substring(1));
+                    cards[i] = c;
+                } else {
+                    i = 7;
+                }
+            }
+        }
+
+        if (string_cards.length == 7) {     //verifica se o player tem 7 cartas, caso contrÃ¡rio ele deu Fold.
+            int[] iPair = new int[7];
+            int[] iStraight = new int[7];
+            int[] iFlush = new int[7];
+            int[] iStraightFlush = new int[7];
+
+            cards = bubbleSort(cards);
+
+            iPair = getPairs(cards);
+            iFlush = getFlush(cards);
+            iStraight = getStraight(cards);
+            iStraightFlush = getStraightFlush(iFlush, iStraight);
+
+            if (isRoyalFlush(cards, iStraightFlush)) {
+                player.setRank(10);
+                player.setHand(cards);
+            } else if (isStraightFlush(iStraightFlush)) {
+                player.setRank(9);
+                for (int i = 0; i < iStraightFlush.length; i++) {
+                    if (iStraightFlush[i] == 1) {
+                        player.setHand(bubbleSort(cards, i, 5));
+                        i = 7;
+                    }
+                }
+                player.setHand(cards);
+            } else if (isFourOfAKind(iPair)) {
+                player.setRank(8);
+                for (int i = 0; i < iPair.length; i++) {
+                    if (iPair[i] == 3) {
+                        player.setHand(bubbleSort(cards, i, 4));
+                        i = 7;
+                    }
+                }
+            } else if (isFullHouse(iPair)) {
+                player.setRank(7);
+                for (int i = 0; i < iPair.length - 1; i++) {
+                    if (i == 0 && iPair[i] == 1) {
+                        cards = turnPairFirst(cards, i);
+                        i = 7;
+                    } else if (iPair[i] == 1 && iPair[i - 1] == 1) {
+                        cards = turnPairFirst(cards, i);
+                        i = 7;
+                    }
+                }
+                for (int i = 0; i < iPair.length - 2; i++) {
+                    if (iPair[i] == 2) {
+                        cards = (turnThreeFirst(cards, i));
+                        i = 7;
+                    }
+                }
+                player.setHand(cards);
+            } else if (isFlushOrStraight(iFlush)) {
+                player.setRank(6);
+                for (int i = iFlush.length - 1; i >= 0; i--) {
+                    if (iFlush[i] == 0) {
+                        for (int j = i; j < iFlush.length - 1; j++) {
+                            cards = exchange(cards, j, j + 1);
+                        }
+                    }
+                }
+                player.setHand(bubbleSort(cards, 0, 5));
+            } else if (isFlushOrStraight(iStraight)) {
+                player.setRank(5);
+                for (int i = 0; i < iStraight.length; i++) {
+                    if (iStraight[i] == 11) {
+                        for (int j = i; j < iStraight.length - 1; j++) {
+                            cards = exchange(cards, j, j + 1);
+                        }
+                    }
+                }
+                for (int i = 0; i < iStraight.length; i++) {
+                    if (iStraight[i] == 1) {
+                        player.setHand(bubbleSort(cards, i, 5));
+                        i = 7;
+                    }
+                }
+            } else if (isThreeOfAKind(cards, iPair)) {
+                player.setRank(4);
+                for (int i = 0; i < iPair.length; i++) {
+                    if (iPair[i] == 2) {
+                        player.setHand(bubbleSort(cards, i, 3));
+                        i = 7;
+                    }
+                }
+            } else if (isTwoPairs(cards, iPair)) {
+                player.setRank(3);
+                int j = -1;
+                for (int i = 0; i < iPair.length - 1; i++) {
+                    if (iPair[i] == 1) {
+                        cards = turnPairFirst(cards, i);
+                        i = 7;
+                    }
+                }
+
+                for (int i = 2; i < iPair.length - 1; i++) {
+                    if (iPair[i] == 1) {
+                        cards = turnPairFirst(cards, i);
+                        i = 7;
+                    }
+                }
+                cards = exchange(cards, 0, 2);
+                cards = exchange(cards, 1, 3);
+                player.setHand(cards);
+
+            } else if (isOnePair(cards, iPair)) {
+                player.setRank(2);
+                for (int i = 0; i < iPair.length - 1; i++) {
+                    if (iPair[i] == 1) {
+                        player.setHand(bubbleSort(cards, i, 2));
+                        i = 7;
+                    }
+                }
+            } else {
+                player.setRank(1);
+                player.setHand(cards);
+            }
+        } else {
+            player.setRank(0);
+            player.setHand(cards);
+        }
+        player.setWinner(false);
+        return player;
+    }
+
+    public boolean isPokerCard(String str) {    //Verifica se a String estÃ¡ no formato exigido pelo programa.
+
+        boolean b = false;
+
+        if (str == null) {
+            b = true;
+        } else if (str.length() == 2) {
+            if (str.endsWith("S") || str.endsWith("C") || str.endsWith("D")
+                    || str.endsWith("H")) {
+                if (str.startsWith("2") || str.startsWith("3")
+                        || str.startsWith("4") || str.startsWith("5")
+                        || str.startsWith("6") || str.startsWith("7")
+                        || str.startsWith("8") || str.startsWith("9")
+                        || str.startsWith("T") || str.startsWith("J")
+                        || str.startsWith("Q") || str.startsWith("K")
+                        || str.startsWith("A")) {
+                    b = true;
+                }
+            }
+        }
+
+        return b;
+    }
+
+    public int faceToInt(String face) {
+
+        int n = 0;
+        String[] faces = new String[13];
+
+        faces[0] = "2";
+        faces[1] = "3";
+        faces[2] = "4";
+        faces[3] = "5";
+        faces[4] = "6";
+        faces[5] = "7";
+        faces[6] = "8";
+        faces[7] = "9";
+        faces[8] = "T";
+        faces[9] = "J";
+        faces[10] = "Q";
+        faces[11] = "K";
+        faces[12] = "A";
+
+        for (int i = 0; i < faces.length; i++) {
+            if (face.equals(faces[i])) {
+                n = i + 2;
+                i = 13;
+            }
+        }
+
+        return n;
+    }
+
+    public String intToFace(int n) {
+
+        String s = "";
+        String[] faces = new String[13];
+
+        faces[0] = "2";
+        faces[1] = "3";
+        faces[2] = "4";
+        faces[3] = "5";
+        faces[4] = "6";
+        faces[5] = "7";
+        faces[6] = "8";
+        faces[7] = "9";
+        faces[8] = "T";
+        faces[9] = "J";
+        faces[10] = "Q";
+        faces[11] = "K";
+        faces[12] = "A";
+
+        for (int i = 0; i < faces.length; i++) {
+            if (n == i + 2) {
+                s = faces[i];
+            }
+        }
+
+        return s;
+    }
+
+    public boolean isRoyalFlush(Card[] cards, int[] indices) {
+
+        int n = 0;
+        boolean b = false;
+
+        for (int i = 0; i < indices.length; i++) {  //verifica se hÃ¡ 5 ou mais cartas que pertece a Straight Flush
+            if (indices[i] == 1) {
+                n++;
+            }
+        }
+
+        if (n > 4) {
+            if (indices[0] == 1 && indices[1] == 1
+                    && cards[0].getFace() == 14 && cards[1].getFace() == 13) {  //Se a maior carta da sequencia for 'Ãs' e a segunda maior for 'K', b = true.
+                b = true;
+            }
+        }
+
+        return b;
+    }
+
+    public boolean isStraightFlush(int[] indices) {
+
+        boolean b = false;
+        int n = 0;
+
+        for (int i = 0; i < indices.length; i++) {
+            if (indices[i] == 1) {
+                n++;
+            }
+        }
+
+        if (n > 4) {
+            b = true;
+        }
+
+        return b;
+    }
+
+    public boolean isFourOfAKind(int[] indices) {
+
+        boolean b = false;
+
+        for (int i = 0; i < indices.length; i++) {
+            if (indices[i] == 3) {
+                b = true;
+            }
+        }
+
+        return b;
+    }
+
+    public boolean isFullHouse(int[] indices) {
+
+        boolean b = false;
+        int n = 0;
+
+        for (int i = 0; i < indices.length; i++) {
+            if (indices[i] == 2) {
+                i = 7;
+                for (int j = 0; j < indices.length; j++) {
+                    if (indices[j] == 1) {
+                        n++;
+                    }
+                }
+            }
+        }
+
+        if (n > 1) {
+            b = true;
+        }
+
+        return b;
+    }
+
+    public boolean isFlushOrStraight(int[] indices) {
+
+        boolean b = false;
+        int n = 0;
+
+        for (int i = 0; i < indices.length; i++) {
+            if (indices[i] == 1) {
+                n++;
+            }
+        }
+
+        if (n > 4) {
+            b = true;
+        }
+
+        return b;
+    }
+
+    public boolean isThreeOfAKind(Card[] cards, int[] indices) {
+
+        boolean b = false;
+
+        for (int i = 0; i < indices.length; i++) {
+            if (indices[i] == 2 && indices[i + 1] == 1) {
+                b = true;
+            }
+        }
+
+        return b;
+    }
+
+    public boolean isTwoPairs(Card[] cards, int[] indices) {
+
+        boolean b = false;
+        int n = 0;
+
+        for (int i = 0; i < indices.length; i++) {
+            if (indices[i] == 1) {
+                n++;
+            }
+        }
+
+        if (n > 1) {
+            b = true;
+        }
+
+        return b;
+    }
+
+    public boolean isOnePair(Card[] cards, int[] indices) {
+        boolean b = false;
+
+        for (int i = 0; i < indices.length; i++) {
+            if (indices[i] == 1) {
+                b = true;
+            }
+        }
+
+        return b;
+    }
+
+    public int[] getStraightFlush(int[] iFlush, int[] iStraight) {
+
+        int[] indices = new int[7];
+
+        for (int i = 0; i < iFlush.length; i++) {
+            if (iFlush[i] == 1 && iStraight[i] == 1) {
+                indices[i] = 1;
+            } else {
+                indices[i] = 0;
+            }
+        }
+
+        return indices;
+    }
+
+    public int[] getFlush(Card[] cards) {
+
+        int[] indices = new int[7];
+
+        for (int i = 0; i < indices.length; i++) {
+            indices[i] = 0;
+        }
+
+        int n = 0;
+        String suit = null;
+
+        for (int i = 0; i < 3; i++) {
+            n = 0;
+            for (int j = 1; j < cards.length; j++) {
+                if ((cards[i].getSuit().equals(cards[j].getSuit()))) {
+                    n++;
+                    if (n == 4) {
+                        suit = cards[i].getSuit();
+                        j = 7;
+                        i = 3;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < cards.length; i++) {
+            if (cards[i].getSuit().equals(suit)) {
+                indices[i] = 1;
+            }
+        }
+
+        return indices;
+    }
+
+    public int[] getStraight(Card[] cards) {          //o valores do int[] de retorno, inicialmente populado com zeros, serÃ¡:(se houver sequÃªncia)
+        //1 para nÃºmeros pertencentes Ã  sequencia
+        //11 para nÃºmeors pertencentes Ã  sequencia e que pertence a um par
+
+        int[] indices = new int[7];
+
+        for (int j = 0; j < indices.length; j++) {
+            indices[j] = 0;
+        }
+
+        for (int j = 0; j < (indices.length) - 1; j++) {
+            if ((cards[j].getFace()) != cards[j + 1].getFace()) {
+                if ((cards[j].getFace() - 1) == cards[j + 1].getFace()) {
+                    indices[j] = 1;
+                }
+            } else {
+                indices[j] = 11;
+            }
+        }
+
+        int n = 0;
+        int m = 0;
+
+        for (int i = 0; i < indices.length; i++) {
+
+            for (int j = 0; j < 3; j++) {
+                if (n > 2 && m == 0 && indices[i] == 0
+                        && cards[j].getFace() == 14
+                        && cards[i].getFace() == 2) {
+                    indices[j] = 1;
+                    indices[i] = 1;
+                    m = 1;
+                }
+            }
+            if (n > 3 && m == 0 && indices[i] == 0) {
+                indices[i] = 1;
+                m = 1;
+            }
+            if (indices[i] == 1) {
+                n++;
+            }
+            if (indices[i] == 0) {
+                n = 0;
+            }
+        }
+
+        n = 0;
+
+        for (int i = 0; i < indices.length; i++) {
+            if (indices[i] == 1) {
+                n++;
+                if (n > m) {
+                    m = n;
+                }
+            }
+            if (indices[i] == 0) {
+                n = 0;
+            }
+        }
+
+        for (int i = 0; i < indices.length; i++) {
+            if (m > 4 || (m > 3 && cards[6].getFace() == 2
+                    && cards[0].getFace() == 14)) {
+                if (indices[6] == 0
+                        && cards[4].getFace() - 1 != cards[5].getFace()) {
+                    indices[5] = 0;
+                }
+                for (int j = 1; j < 3; j++) {
+                    if (indices[j] == 0 && cards[j - 1].getFace() != 14
+                            && cards[6].getFace() == 2) {
+                        indices[j - 1] = 0;
+                    }
+                }
+            }
+        }
+
+        return indices;
+    }
+
+    public int[] getPairs(Card[] cards) {
+
+        int[] indices = new int[7];
+
+        for (int i = 0; i < indices.length; i++) {
+            indices[i] = 0;
+        }
+
+        for (int i = 0; i < (indices.length) - 1; i++) {
+            for (int j = i + 1; j < indices.length; j++) {
+                if (cards[i].getFace() == cards[j].getFace()) {
+                    indices[i]++;
+                }
+            }
+        }
+
+        return indices;
+    }
+
+    public Card[] bubbleSort(Card[] cards) {
+
+        for (int i = 0; i < cards.length; i++) {
+            for (int j = (cards.length) - 1; j > i; j--) {
+                if (cards[j] != null) {
+                    if (cards[j - 1] == null
+                            || cards[j].getFace() > cards[j - 1].getFace()) {
+                        cards = exchange(cards, j, j - 1);
+                    }
+                }
+            }
+        }
+
+        return cards;
+    }
+
+    public Card[] bubbleSort(Card[] cards, int start, int n) {   //leva o conjunto de cartas e indice 'start' a 'start+1' aos primeiros indices do vetor e
+        //ordena o restante das cartas
+        while (start >= 1) {
+            for (int i = start - 1; i < cards.length - 1; i++) {
+                cards = exchange(cards, i, i + 1);
+            }
+            start--;
+        }
+
+        for (int i = n; i < cards.length; i++) {
+            for (int j = (cards.length) - 1; j > i; j--) {
+                if (cards[j].getFace() > cards[j - 1].getFace()) {
+                    cards = exchange(cards, j, j - 1);
+                }
+            }
+        }
+        return cards;
+    }
+
+    public Card[] bubbleSort(Card[] cards, int start, int n, int l) {//leva o conjunto de cartas e indice 'start' a 'start+1'
+        //aos indices subsequentes do indice [j] e
+        while (start >= l + 1) {                                           //ordena o restante das cartas
+            for (int i = start - 1; i < cards.length - 1; i++) {
+                cards = exchange(cards, i, i + 1);
+            }
+            start--;
+        }
+
+        for (int i = (n + l); i < cards.length; i++) {
+            for (int j = (cards.length) - 1; j > i; j--) {
+                cards = exchange(cards, j, j - 1);
+            }
+        }
+
+        return cards;
+    }
+
+    public Card[] turnPairFirst(Card[] cards, int indice) {
+
+        for (int i = indice; i > 0; i--) {
+            cards = exchange(cards, i, i - 1);
+        }
+        for (int i = indice + 1; i > 1; i--) {
+            cards = exchange(cards, i, i - 1);
+        }
+
+        return cards;
+    }
+
+    public Card[] turnThreeFirst(Card[] cards, int indice) {
+
+        for (int i = indice; i > 0; i--) {
+            cards = exchange(cards, i, i - 1);
+        }
+        for (int i = indice + 1; i > 1; i--) {
+            cards = exchange(cards, i, i - 1);
+        }
+        for (int i = indice + 2; i > 2; i--) {
+            cards = exchange(cards, i, i - 1);
+        }
+
+        return cards;
+    }
+
+    public Card[] exchange(Card[] cards, int a, int b) { //Troca a carta de indice 'a' pela carta de indice 'b' e vice-versa.
+
+        Card c = cards[a];
+        cards[a] = cards[b];
+        cards[b] = c;
+
+        return cards;
+    }
+
+    public String rankString(int rank) {
+
+        String rank_str;
+
+        switch (rank) {
+            case -1:
+                rank_str = "Everybody Fold";
+                break;
+            case 0:
+                rank_str = "Fold";
+                break;
+            case 1:
+                rank_str = " as the Highest Card";
+                break;
+            case 2:
+                rank_str = "One Pair";
+                break;
+            case 3:
+                rank_str = "Two Pairs";
+                break;
+            case 4:
+                rank_str = "Three Of A Kind";
+                break;
+            case 5:
+                rank_str = "Straight";
+                break;
+            case 6:
+                rank_str = "Flush";
+                break;
+            case 7:
+                rank_str = "Full House";
+                break;
+            case 8:
+                rank_str = "Four Of A Kind";
+                break;
+            case 9:
+                rank_str = "Straight Flush";
+                break;
+            case 10:
+                rank_str = "Royal Flush";
+                break;
+            default:
+                rank_str = "";
+        }
+
+        return rank_str;
+    }
+
+    public Player[] setWinner(Player[] players) {
+
+        int melhor_jogo = -1;
+
+        for (int i = 0; i < players.length; i++) {
+            if (players[i].getRank() > melhor_jogo) {
+                melhor_jogo = players[i].getRank();
+            }
+        }
+
+
+        if (melhor_jogo != -1 && melhor_jogo != 5 && melhor_jogo != 7) {
+            int maior_carta = 0;
+            for (int i = 0; i < players.length; i++) {
+                if (players[i].getRank() == melhor_jogo
+                        && (players[i].getHand()[0].getFace() > maior_carta)) {
+                    maior_carta = players[i].getHand()[0].getFace();
+                }
+            }
+
+            int maior_carta2 = 0;
+            for (int i = 0; i < players.length; i++) {
+                if (players[i].getRank() == melhor_jogo
+                        && players[i].getHand()[0].getFace() == maior_carta
+                        && players[i].getHand()[1].getFace() > maior_carta2) {
+                    maior_carta2 = players[i].getHand()[1].getFace();
+                }
+            }
+
+            for (int i = 0; i < players.length; i++) {
+                if (players[i].getRank() == melhor_jogo
+                        && players[i].getHand()[0].getFace() == maior_carta
+                        && players[i].getHand()[1].getFace() == maior_carta2) {
+                    players[i].setWinner(true);
+                }
+            }
+        }else if (melhor_jogo != 5 || melhor_jogo != 7){
+
+            int maior_carta = 0;
+            for (int i = 0; i < players.length; i++) {
+                if (players[i].getRank() == melhor_jogo
+                        && (players[i].getHand()[0].getFace() > maior_carta)) {
+                    maior_carta = players[i].getHand()[0].getFace();
+                }
+            }
+
+            int maior_carta2 = 0;
+            for (int i = 0; i < players.length; i++) {
+                if (players[i].getRank() == melhor_jogo
+                        && players[i].getHand()[0].getFace() == maior_carta
+                        && players[i].getHand()[3].getFace() > maior_carta2) {
+                    maior_carta2 = players[i].getHand()[3].getFace();
+                }
+            }
+
+            for (int i = 0; i < players.length; i++) {
+                if (players[i].getRank() == melhor_jogo
+                        && players[i].getHand()[0].getFace() == maior_carta
+                        && players[i].getHand()[3].getFace() == maior_carta2) {
+                    players[i].setWinner(true);
+                }
+            }
+        }
+        
+        return players;
+    }
+}
