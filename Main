@@ -1,0 +1,17 @@
+package apptexasholdem;
+
+import com.br.form.MainFrame;
+import com.br.util.Functions;
+import com.br.util.Testes;
+
+/**
+ * @author SAMUEL
+ */
+public class Main {
+
+    public static void main(String[] args) {
+
+        MainFrame frame = new MainFrame();
+        frame.setVisible(true);
+    }
+}
