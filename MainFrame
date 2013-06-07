@@ -1,0 +1,787 @@
+/*
+ * MainFrame.java
+ * Created on 07/06/2013, 11:36:06
+ */
+package com.br.form;
+
+import com.br.bean.Player;
+import com.br.util.Functions;
+import com.br.util.Testes;
+import java.awt.Color;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+/**
+ * @author SAMUEL
+ */
+public class MainFrame extends javax.swing.JFrame {
+
+    Functions f = new Functions();
+    Testes t = new Testes();
+    Player[] players;
+
+    public MainFrame() {
+        initComponents();
+        setResizable(false);
+        jFrame1.setResizable(false);
+        jFDefault = jFrame1;
+    }
+
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jFrame1 = new javax.swing.JFrame();
+        jPanel2 = new javax.swing.JPanel();
+        lhand1 = new java.awt.Label();
+        lhand2 = new java.awt.Label();
+        lhand3 = new java.awt.Label();
+        lhand4 = new java.awt.Label();
+        lhand5 = new java.awt.Label();
+        lhand6 = new java.awt.Label();
+        lhand7 = new java.awt.Label();
+        lhand8 = new java.awt.Label();
+        lhand9 = new java.awt.Label();
+        lhand10 = new java.awt.Label();
+        lhand11 = new java.awt.Label();
+        lhand12 = new java.awt.Label();
+        ldiscart1 = new java.awt.Label();
+        ldiscart2 = new java.awt.Label();
+        ldiscart3 = new java.awt.Label();
+        ldiscart4 = new java.awt.Label();
+        ldiscart5 = new java.awt.Label();
+        ldiscart6 = new java.awt.Label();
+        ldiscart7 = new java.awt.Label();
+        ldiscart8 = new java.awt.Label();
+        ldiscart9 = new java.awt.Label();
+        ldiscart10 = new java.awt.Label();
+        ldiscart11 = new java.awt.Label();
+        ldiscart12 = new java.awt.Label();
+        lname1 = new java.awt.Label();
+        lname2 = new java.awt.Label();
+        lname3 = new java.awt.Label();
+        lname4 = new java.awt.Label();
+        lname5 = new java.awt.Label();
+        lname6 = new java.awt.Label();
+        lname7 = new java.awt.Label();
+        lname8 = new java.awt.Label();
+        lname9 = new java.awt.Label();
+        lname10 = new java.awt.Label();
+        lname11 = new java.awt.Label();
+        lname12 = new java.awt.Label();
+        jFDefault = new javax.swing.JFrame();
+        jPanel1 = new javax.swing.JPanel();
+        bttAbrir = new javax.swing.JButton();
+        bttGo = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtArea = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
+
+        jFrame1.setMinimumSize(new java.awt.Dimension(430, 450));
+
+        jPanel2.setBackground(new java.awt.Color(0, 51, 0));
+
+        lhand1.setBackground(new java.awt.Color(0, 38, 0));
+        lhand1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        lhand1.setForeground(new java.awt.Color(255, 255, 255));
+
+        lhand2.setBackground(new java.awt.Color(0, 38, 0));
+        lhand2.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        lhand2.setForeground(new java.awt.Color(255, 255, 255));
+
+        lhand3.setBackground(new java.awt.Color(0, 38, 0));
+        lhand3.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        lhand3.setForeground(new java.awt.Color(255, 255, 255));
+
+        lhand4.setBackground(new java.awt.Color(0, 38, 0));
+        lhand4.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        lhand4.setForeground(new java.awt.Color(255, 255, 255));
+
+        lhand5.setBackground(new java.awt.Color(0, 38, 0));
+        lhand5.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        lhand5.setForeground(new java.awt.Color(255, 255, 255));
+
+        lhand6.setBackground(new java.awt.Color(0, 38, 0));
+        lhand6.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        lhand6.setForeground(new java.awt.Color(255, 255, 255));
+
+        lhand7.setBackground(new java.awt.Color(0, 38, 0));
+        lhand7.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        lhand7.setForeground(new java.awt.Color(255, 255, 255));
+
+        lhand8.setBackground(new java.awt.Color(0, 38, 0));
+        lhand8.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        lhand8.setForeground(new java.awt.Color(255, 255, 255));
+
+        lhand9.setBackground(new java.awt.Color(0, 38, 0));
+        lhand9.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        lhand9.setForeground(new java.awt.Color(255, 255, 255));
+
+        lhand10.setBackground(new java.awt.Color(0, 38, 0));
+        lhand10.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        lhand10.setForeground(new java.awt.Color(255, 255, 255));
+
+        lhand11.setBackground(new java.awt.Color(0, 38, 0));
+        lhand11.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        lhand11.setForeground(new java.awt.Color(255, 255, 255));
+
+        lhand12.setBackground(new java.awt.Color(0, 38, 0));
+        lhand12.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        lhand12.setForeground(new java.awt.Color(255, 255, 255));
+
+        ldiscart1.setBackground(new java.awt.Color(0, 38, 0));
+        ldiscart1.setFont(new java.awt.Font("Georgia", 1, 14));
+        ldiscart1.setForeground(new java.awt.Color(204, 204, 204));
+
+        ldiscart2.setBackground(new java.awt.Color(0, 38, 0));
+        ldiscart2.setFont(new java.awt.Font("Georgia", 1, 14));
+        ldiscart2.setForeground(new java.awt.Color(204, 204, 204));
+
+        ldiscart3.setBackground(new java.awt.Color(0, 38, 0));
+        ldiscart3.setFont(new java.awt.Font("Georgia", 1, 14));
+        ldiscart3.setForeground(new java.awt.Color(204, 204, 204));
+
+        ldiscart4.setBackground(new java.awt.Color(0, 38, 0));
+        ldiscart4.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        ldiscart4.setForeground(new java.awt.Color(204, 204, 204));
+
+        ldiscart5.setBackground(new java.awt.Color(0, 38, 0));
+        ldiscart5.setFont(new java.awt.Font("Georgia", 1, 14));
+        ldiscart5.setForeground(new java.awt.Color(204, 204, 204));
+
+        ldiscart6.setBackground(new java.awt.Color(0, 38, 0));
+        ldiscart6.setFont(new java.awt.Font("Georgia", 1, 14));
+        ldiscart6.setForeground(new java.awt.Color(204, 204, 204));
+
+        ldiscart7.setBackground(new java.awt.Color(0, 38, 0));
+        ldiscart7.setFont(new java.awt.Font("Georgia", 1, 14));
+        ldiscart7.setForeground(new java.awt.Color(204, 204, 204));
+
+        ldiscart8.setBackground(new java.awt.Color(0, 38, 0));
+        ldiscart8.setFont(new java.awt.Font("Georgia", 1, 14));
+        ldiscart8.setForeground(new java.awt.Color(204, 204, 204));
+
+        ldiscart9.setBackground(new java.awt.Color(0, 38, 0));
+        ldiscart9.setFont(new java.awt.Font("Georgia", 1, 14));
+        ldiscart9.setForeground(new java.awt.Color(204, 204, 204));
+
+        ldiscart10.setBackground(new java.awt.Color(0, 38, 0));
+        ldiscart10.setFont(new java.awt.Font("Georgia", 1, 14));
+        ldiscart10.setForeground(new java.awt.Color(204, 204, 204));
+
+        ldiscart11.setBackground(new java.awt.Color(0, 38, 0));
+        ldiscart11.setFont(new java.awt.Font("Georgia", 1, 14));
+        ldiscart11.setForeground(new java.awt.Color(204, 204, 204));
+
+        ldiscart12.setBackground(new java.awt.Color(0, 38, 0));
+        ldiscart12.setFont(new java.awt.Font("Georgia", 1, 14));
+        ldiscart12.setForeground(new java.awt.Color(204, 204, 204));
+
+        lname1.setBackground(new java.awt.Color(0, 38, 0));
+        lname1.setFont(new java.awt.Font("Georgia", 1, 14));
+        lname1.setForeground(new java.awt.Color(255, 255, 255));
+
+        lname2.setBackground(new java.awt.Color(0, 38, 0));
+        lname2.setFont(new java.awt.Font("Georgia", 1, 14));
+        lname2.setForeground(new java.awt.Color(255, 255, 255));
+
+        lname3.setBackground(new java.awt.Color(0, 38, 0));
+        lname3.setFont(new java.awt.Font("Georgia", 1, 14));
+        lname3.setForeground(new java.awt.Color(255, 255, 255));
+
+        lname4.setBackground(new java.awt.Color(0, 38, 0));
+        lname4.setFont(new java.awt.Font("Georgia", 1, 14));
+        lname4.setForeground(new java.awt.Color(255, 255, 255));
+
+        lname5.setBackground(new java.awt.Color(0, 38, 0));
+        lname5.setFont(new java.awt.Font("Georgia", 1, 14));
+        lname5.setForeground(new java.awt.Color(255, 255, 255));
+
+        lname6.setBackground(new java.awt.Color(0, 38, 0));
+        lname6.setFont(new java.awt.Font("Georgia", 1, 14));
+        lname6.setForeground(new java.awt.Color(255, 255, 255));
+
+        lname7.setBackground(new java.awt.Color(0, 38, 0));
+        lname7.setFont(new java.awt.Font("Georgia", 1, 14));
+        lname7.setForeground(new java.awt.Color(255, 255, 255));
+
+        lname8.setBackground(new java.awt.Color(0, 38, 0));
+        lname8.setFont(new java.awt.Font("Georgia", 1, 14));
+        lname8.setForeground(new java.awt.Color(255, 255, 255));
+
+        lname9.setBackground(new java.awt.Color(0, 38, 0));
+        lname9.setFont(new java.awt.Font("Georgia", 1, 14));
+        lname9.setForeground(new java.awt.Color(255, 255, 255));
+
+        lname10.setBackground(new java.awt.Color(0, 38, 0));
+        lname10.setFont(new java.awt.Font("Georgia", 1, 14));
+        lname10.setForeground(new java.awt.Color(255, 255, 255));
+
+        lname11.setBackground(new java.awt.Color(0, 38, 0));
+        lname11.setFont(new java.awt.Font("Georgia", 1, 14));
+        lname11.setForeground(new java.awt.Color(255, 255, 255));
+
+        lname12.setBackground(new java.awt.Color(0, 38, 0));
+        lname12.setFont(new java.awt.Font("Georgia", 1, 14));
+        lname12.setForeground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lhand12, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(lhand11, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(lhand10, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(lhand9, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(lhand8, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(lhand7, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(lhand6, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(lhand5, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(lhand4, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(lhand3, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(lhand2, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(lhand1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ldiscart12, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(ldiscart11, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(ldiscart10, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(ldiscart9, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(ldiscart8, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(ldiscart7, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(ldiscart6, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(ldiscart5, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(ldiscart4, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(ldiscart3, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(ldiscart2, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(ldiscart1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lname11, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(lname10, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(lname9, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(lname3, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(lname5, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(lname6, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(lname7, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(lname8, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(lname2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(lname4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(lname12, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(lname1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lname1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lhand1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ldiscart1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lname2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ldiscart2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lhand2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lname3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ldiscart3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lhand3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lname4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ldiscart4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lhand4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ldiscart5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lhand5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ldiscart6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lhand6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lname5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lname6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(lhand7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lhand8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(lname7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lname8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(ldiscart7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ldiscart8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lname9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ldiscart9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lhand9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lname10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ldiscart10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lhand10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lname11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ldiscart11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lhand11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lname12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ldiscart12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lhand12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jFDefaultLayout = new javax.swing.GroupLayout(jFDefault.getContentPane());
+        jFDefault.getContentPane().setLayout(jFDefaultLayout);
+        jFDefaultLayout.setHorizontalGroup(
+            jFDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFDefaultLayout.setVerticalGroup(
+            jFDefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(0, 51, 0));
+
+        bttAbrir.setText("Abrir");
+        bttAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttAbrirActionPerformed(evt);
+            }
+        });
+
+        bttGo.setText("Go!");
+        bttGo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttGoActionPerformed(evt);
+            }
+        });
+
+        txtArea.setColumns(20);
+        txtArea.setRows(5);
+        jScrollPane1.setViewportView(txtArea);
+
+        jButton1.setText("AleatÃ³rio");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                            .addComponent(bttAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bttGo, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bttGo, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(bttAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void bttAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttAbrirActionPerformed
+        Abrir();
+    }//GEN-LAST:event_bttAbrirActionPerformed
+
+    private void bttGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttGoActionPerformed
+
+        limpaCampos();
+        go();
+    }//GEN-LAST:event_bttGoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        txtArea.setText(t.criaString());
+    }//GEN-LAST:event_jButton1ActionPerformed
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                new MainFrame().setVisible(true);
+            }
+        });
+    }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bttAbrir;
+    private javax.swing.JButton bttGo;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JFrame jFDefault;
+    private javax.swing.JFrame jFrame1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private java.awt.Label ldiscart1;
+    private java.awt.Label ldiscart10;
+    private java.awt.Label ldiscart11;
+    private java.awt.Label ldiscart12;
+    private java.awt.Label ldiscart2;
+    private java.awt.Label ldiscart3;
+    private java.awt.Label ldiscart4;
+    private java.awt.Label ldiscart5;
+    private java.awt.Label ldiscart6;
+    private java.awt.Label ldiscart7;
+    private java.awt.Label ldiscart8;
+    private java.awt.Label ldiscart9;
+    private java.awt.Label lhand1;
+    private java.awt.Label lhand10;
+    private java.awt.Label lhand11;
+    private java.awt.Label lhand12;
+    private java.awt.Label lhand2;
+    private java.awt.Label lhand3;
+    private java.awt.Label lhand4;
+    private java.awt.Label lhand5;
+    private java.awt.Label lhand6;
+    private java.awt.Label lhand7;
+    private java.awt.Label lhand8;
+    private java.awt.Label lhand9;
+    private java.awt.Label lname1;
+    private java.awt.Label lname10;
+    private java.awt.Label lname11;
+    private java.awt.Label lname12;
+    private java.awt.Label lname2;
+    private java.awt.Label lname3;
+    private java.awt.Label lname4;
+    private java.awt.Label lname5;
+    private java.awt.Label lname6;
+    private java.awt.Label lname7;
+    private java.awt.Label lname8;
+    private java.awt.Label lname9;
+    private javax.swing.JTextArea txtArea;
+    // End of variables declaration//GEN-END:variables
+
+    private void Abrir() {
+        String[] texto = new String[12];
+
+        try {
+            texto = f.loadTxt();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Functions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Functions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        String str = "";
+
+        for (int i = 0; i < texto.length; i++) {
+            if (texto[i].equals("")) {
+            } else if (i == 0) {
+                str = texto[i];
+            } else {
+                str = str + "\n" + texto[i];
+            }
+        }
+
+        txtArea.setText(str);
+
+    }
+
+    private void go() {
+
+        String str = txtArea.getText();
+
+        if (!(str == null || str.equals(""))) {
+            String[] texto = new String[12];
+            texto = str.split("\n");
+            int numero_de_jogadores = 0;
+
+            for (int i = 0; i < texto.length; i++) {
+                if (!texto[i].equals("")) {
+                    numero_de_jogadores++;
+                }
+            }
+
+            players = new Player[numero_de_jogadores];
+
+            for (int i = 0; i < players.length; i++) {
+                players[i] = f.setPlayer(texto[i], players[i]);
+            }
+
+            players = f.setWinner(players);
+
+            jFrame1.setVisible(true);
+            setLabels(players);
+
+        } else {
+            JOptionPane.showMessageDialog
+                    (null, "Preencha o quadro com as cartas do jogadores",
+                    "AtenÃ§Ã£o", 2);
+        }
+
+    }
+
+    private void setLabels(Player[] players) {
+        String hand = "";
+        String discard = "";
+        String name = "";
+
+        for (int i = 0; i < players.length; i++) {
+            hand = "";
+            discard = "";
+            name = "";
+            int k = 0;
+            for (int j = 0; j < players[i].getHand().length; j++) {
+                k++;
+                if (k < 6) {
+                    hand = hand + f.intToFace(players[i].getHand()[j].getFace())
+                            + players[i].getHand()[j].getSuit() + "  ";
+                } else {
+                    discard = discard +
+                            f.intToFace(players[i].getHand()[j].getFace())
+                            + players[i].getHand()[j].getSuit() + "  ";
+                }
+            }
+
+            name = f.rankString(players[i].getRank());
+
+            if (players[i].getRank() == 1) {
+                name = "'" + f.intToFace(players[i].getHand()[0].getFace())
+                        + "'" + name;
+            }
+
+            switch (i) {
+                case 0:
+                    lhand1.setText(hand);
+                    ldiscart1.setText(discard);
+                    lname1.setText(name);
+                    if (players[i].isWinner()) {
+                        lhand1.setForeground(Color.red);
+                        lname1.setForeground(Color.red);
+                    }
+                    break;
+                case 1:
+                    lhand2.setText(hand);
+                    ldiscart2.setText(discard);
+                    lname2.setText(name);
+                    if (players[i].isWinner()) {
+                        lhand2.setForeground(Color.red);
+                        lname2.setForeground(Color.red);
+                    }
+                    break;
+                case 2:
+                    lhand3.setText(hand);
+                    ldiscart3.setText(discard);
+                    lname3.setText(name);
+                    if (players[i].isWinner()) {
+                        lhand3.setForeground(Color.red);
+                        lname3.setForeground(Color.red);
+                    }
+                    break;
+                case 3:
+                    lhand4.setText(hand);
+                    ldiscart4.setText(discard);
+                    lname4.setText(name);
+                    if (players[i].isWinner()) {
+                        lhand4.setForeground(Color.red);
+                        lname4.setForeground(Color.red);
+                    }
+                    break;
+                case 4:
+                    lhand5.setText(hand);
+                    ldiscart5.setText(discard);
+                    lname5.setText(name);
+                    if (players[i].isWinner()) {
+                        lhand5.setForeground(Color.red);
+                        lname5.setForeground(Color.red);
+                    }
+                    break;
+                case 5:
+                    lhand6.setText(hand);
+                    ldiscart6.setText(discard);
+                    lname6.setText(name);
+                    if (players[i].isWinner()) {
+                        lhand6.setForeground(Color.red);
+                        lname6.setForeground(Color.red);
+                    }
+                    break;
+                case 6:
+                    lhand7.setText(hand);
+                    ldiscart7.setText(discard);
+                    lname7.setText(name);
+                    if (players[i].isWinner()) {
+                        lhand7.setForeground(Color.red);
+                        lname7.setForeground(Color.red);
+                    }
+                    break;
+                case 7:
+                    lhand8.setText(hand);
+                    ldiscart8.setText(discard);
+                    lname8.setText(name);
+                    if (players[i].isWinner()) {
+                        lhand8.setForeground(Color.red);
+                        lname8.setForeground(Color.red);
+                    }
+                    break;
+                case 8:
+                    lhand9.setText(hand);
+                    ldiscart9.setText(discard);
+                    lname9.setText(name);
+                    if (players[i].isWinner()) {
+                        lhand9.setForeground(Color.red);
+                        lname9.setForeground(Color.red);
+                    }
+                    break;
+                case 9:
+                    lhand10.setText(hand);
+                    ldiscart10.setText(discard);
+                    lname10.setText(name);
+                    if (players[i].isWinner()) {
+                        lhand10.setForeground(Color.red);
+                        lname10.setForeground(Color.red);
+                    }
+                    break;
+                case 10:
+                    lhand11.setText(hand);
+                    ldiscart11.setText(discard);
+                    lname11.setText(name);
+                    if (players[i].isWinner()) {
+                        lhand11.setForeground(Color.red);
+                        lname11.setForeground(Color.red);
+                    }
+                    break;
+                default:
+                    lhand12.setText(hand);
+                    ldiscart12.setText(discard);
+                    lname12.setText(name);
+                    if (players[i].isWinner()) {
+                        lhand12.setForeground(Color.red);
+                        lname12.setForeground(Color.red);
+                    }
+            }
+        }
+    }
+
+    private void limpaCampos() {
+        jFrame1 = jFDefault;
+
+        lhand1.setForeground(Color.white);
+        lname1.setForeground(Color.white);
+        lhand2.setForeground(Color.white);
+        lname2.setForeground(Color.white);
+        lhand3.setForeground(Color.white);
+        lname3.setForeground(Color.white);
+        lhand4.setForeground(Color.white);
+        lname4.setForeground(Color.white);
+        lhand5.setForeground(Color.white);
+        lname5.setForeground(Color.white);
+        lhand6.setForeground(Color.white);
+        lname6.setForeground(Color.white);
+        lhand7.setForeground(Color.white);
+        lname7.setForeground(Color.white);
+        lhand8.setForeground(Color.white);
+        lname8.setForeground(Color.white);
+        lhand9.setForeground(Color.white);
+        lname9.setForeground(Color.white);
+        lhand10.setForeground(Color.white);
+        lname10.setForeground(Color.white);
+        lhand11.setForeground(Color.white);
+        lname11.setForeground(Color.white);
+        lhand12.setForeground(Color.white);
+        lname12.setForeground(Color.white);
+
+         lhand1.setText("");
+                    ldiscart1.setText("");
+                    lname1.setText("");
+                    lhand2.setText("");
+                    ldiscart2.setText("");
+                    lname2.setText("");
+                    lhand3.setText("");
+                    ldiscart3.setText("");
+                    lname3.setText("");
+                    lhand4.setText("");
+                    ldiscart4.setText("");
+                    lname4.setText("");
+                    lhand5.setText("");
+                    ldiscart5.setText("");
+                    lname5.setText("");
+                    lhand6.setText("");
+                    ldiscart6.setText("");
+                    lname6.setText("");
+                    lhand7.setText("");
+                    ldiscart7.setText("");
+                    lname7.setText("");
+                    lhand8.setText("");
+                    ldiscart8.setText("");
+                    lname8.setText("");
+                    lhand9.setText("");
+                    ldiscart9.setText("");
+                    lname9.setText("");
+                    lhand10.setText("");
+                    ldiscart10.setText("");
+                    lname10.setText("");
+                    lhand11.setText("");
+                    ldiscart11.setText("");
+                    lname11.setText("");
+                    lhand12.setText("");
+                    ldiscart12.setText("");
+                    lname12.setText("");
+    }
+}
