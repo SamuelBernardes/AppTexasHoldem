@@ -1,0 +1,39 @@
+package com.br.bean;
+/**
+ * @author SAMUEL
+ */
+public class Player {
+
+
+    private Card[] hand;
+    private int rank;
+    private boolean winner;
+
+    public Player(){
+    }
+
+    public boolean isWinner() {
+        return winner;
+    }
+
+    public void setWinner(boolean winner) {
+        this.winner = winner;
+    }
+
+    public Card[] getHand() {
+        return hand;
+    }
+
+    public void setHand(Card[] hand) {
+        this.hand = hand;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+//Rank em inteiros representando as mÃ£os finais do jogadores 0 - fold, 1 - one pair, 2 - two pairs... 9 - straight flush e 10 - royal flush
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+}
