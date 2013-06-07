@@ -1,0 +1,53 @@
+package com.br.util;
+
+/**
+ * @author SAMUEL
+ */
+public class Testes {
+
+    public String criaString() {
+        Functions f = new Functions();
+        String s = "";
+        String face = "";
+        String suit = "";
+        int numero_jogadores = 0;
+        int numero_cartas = 0;
+
+        numero_jogadores = (int) (5 + Math.random() * 7);
+
+        for (int i = 0; i < numero_jogadores; i++) {
+            if (Math.random() * 7 > 1) {
+                numero_cartas = (int) (6 + Math.random() * 2);
+            } else {
+                numero_cartas = 2;
+            }
+            for (int j = 0; j < numero_cartas; j++) {
+                face = f.intToFace((int) (2 + (Math.random() * 13)));
+                suit = suitString((int) (Math.random() * 4));
+                s += face + suit + " ";
+            }
+            if (i != numero_jogadores - 1) {
+                s += "\n";
+            }
+        }
+
+        return s;
+    }
+
+    private String suitString(int n) {
+        String str = "";
+        if (n == 0) {
+            str = "d";
+        }
+        if (n == 1) {
+            str = "s";
+        }
+        if (n == 2) {
+            str = "c";
+        }
+        if (n == 3) {
+            str = "h";
+        }
+        return str;
+    }
+}
