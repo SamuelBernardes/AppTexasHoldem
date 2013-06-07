@@ -1,0 +1,32 @@
+package com.br.bean;
+/**
+ * @author SAMUEL
+ */
+public class Card {
+
+    //As cartas variam entre 2-A, mas serÃ¡ usado uma variaÃ§Ã£o de 2-14 para uma melhor manipulaÃ§Ã£o 
+    //'J', 'Q', 'K' e 'A' serÃ£o representados pelos inteiros 11, 12, 13 e 14 respectivamente
+    private int face;
+    private String suit;
+
+    public Card(){
+        face = 0;
+        suit = "x";
+    }
+    public int getFace() {
+        return face;
+    }
+
+    public void setFace(int face) {
+        this.face = face;
+    }
+
+    public String getSuit() {
+        return suit;
+    }
+
+    public void setSuit(String suit) {
+        this.suit = suit;
+    }
+    
+}
